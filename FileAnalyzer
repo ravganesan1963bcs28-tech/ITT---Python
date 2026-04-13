@@ -1,0 +1,27 @@
+class FileAnalyzer:
+    def __init__(self, filename):
+        self.filename = filename
+        self.words = 0
+        self.lines = 0
+        self.chars = 0
+
+    def analyze(self):
+        try:
+            with open(self.filename, 'r') as file:
+                for line in file:
+                    self.lines += 1
+                    self.chars += len(line)
+                    self.words += len(line.split())
+        except FileNotFoundError:
+            print("File not found.")
+
+    def display_counts(self):
+        print(f"Total Words: {self.words}")
+        print(f"Total Lines: {self.lines}")
+        print(f"Total Characters: {self.chars}")
+
+
+file_name = input("Enter the filename (e.g., data.txt): ")
+analyzer = FileAnalyzer(file_name)
+analyzer.analyze()
+analyzer.display_counts()
