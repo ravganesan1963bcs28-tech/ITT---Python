@@ -1,15 +1,10 @@
-
 import re
-
 class LogAnalyzer:
     def __init__(self, filename):
         self.filename = filename
         self.error_logs = []
-
     def extract_errors(self):
-
         pattern = r'^ERROR \d{2}:\d{2}:\d{2}.*'
-
         try:
             with open(self.filename, 'r') as file:
                 for line in file:
@@ -17,7 +12,6 @@ class LogAnalyzer:
                         self.error_logs.append(line.strip())
         except FileNotFoundError:
             print("Log file not found.")
-
     def display(self):
         if self.error_logs:
             for log in self.error_logs:
@@ -29,7 +23,6 @@ with open("system.log", "w") as f:
     f.write("ERROR 12:05:10 Failed to connect\n")
     f.write("DEBUG 12:06:00 Retrying\n")
     f.write("ERROR 12:07:15 Timeout reached\n")
-
 analyzer = LogAnalyzer("system.log")
 analyzer.extract_errors()
 analyzer.display()
